@@ -4,28 +4,31 @@
 # Hint: use the `paste()` function and vector recycling to add a number to the word
 # "Employee"
 
+employee <- paste("employee", 1:100)
 
 # Create a vector of 100 random salaries for the year 2017
 # Use the `runif()` function to pick random numbers between 40000 and 50000
 
+salaries <- runif(100,40000,50000)
 
 # Create a vector of 100 annual salary adjustments between -5000 and 10000.
 # (A negative number represents a salary decrease due to corporate greed)
 # Again use the `runif()` function to pick 100 random numbers in that range.
-
+adj <- runif(100,-5000,10000)
 
 # Create a data frame `salaries` by combining the 3 vectors you just made
 # Remember to set `stringsAsFactors=FALSE`!
-
+salariesData <- data.frame(employee,salaries, adj)
 
 # Add a column to the `salaries` data frame that represents each person's
 # salary in 2018 (e.g., with the salary adjustment added in).
 
+salariesData$NewSalary <- salariesData$salaries + salariesData$adj
 
 # Add a column to the `salaries` data frame that has a value of `TRUE` if the 
 # person got a raise (their salary went up)
 
-
+salariesData$Raise <- salariesData$adj > 0
 
 ### Retrieve values from your data frame to answer the following questions
 ### Note that you should get the value as specific as possible (e.g., a single
@@ -33,6 +36,7 @@
 
 # What was the 2018 salary of Employee 57
 
+salariesData$NewSalary[[salariesData$employee == "employee 57"]]
 
 # How many employees got a raise?
 
